@@ -64,8 +64,8 @@ def Train_CNN_Model(model):
    
     # prepare iterators
     batch_size=32
-    train_it = train_datagen.flow_from_directory('Data/train/',classes =('abnormal','normal'),batch_size=batch_size, target_size=(224, 224))
-    valid_it = valid_datagen.flow_from_directory('Data/val/',classes =('abnormal','normal'),batch_size=batch_size, target_size=(224, 224))
+    train_it = train_datagen.flow_from_directory('Data/train/',classes =('COVID-19','sano'),batch_size=batch_size, target_size=(224, 224))
+    valid_it = valid_datagen.flow_from_directory('Data/val/',classes =('COVID-19','sano'),batch_size=batch_size, target_size=(224, 224))
 
 
     epochs=100;
@@ -82,19 +82,7 @@ def Train_CNN_Model(model):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.show()
-    
-    # "Loss"
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'validation'], loc='upper left')
-    plt.show()
-
-	# save model
-    model.save('medical_diagnosis_cnn_model.h5')
-    
+        
 
 # main entry 
 model = Build_CNN_Model()
